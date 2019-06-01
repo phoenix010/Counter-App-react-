@@ -60,15 +60,14 @@ class App extends Component {
               return acc + curr;
             })}
         />
-        <main className="container">
-          <Counters
-            counters={this.state.counters}
-            onReset={this.handleReset}
-            onIncrement={this.handleIncrement}
-            onDelete={this.handleDelete}
-            onAdd={this.handleAddition}
-          />
-        </main>
+
+        <Counters
+          counters={this.state.counters}
+          onReset={this.handleReset}
+          onIncrement={this.handleIncrement}
+          onDelete={this.handleDelete}
+          onAdd={this.handleAddition}
+        />
       </React.Fragment>
     );
   }
