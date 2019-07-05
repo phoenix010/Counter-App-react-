@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import NavBar from "./components/NavBar";
 import Counters from "./components/counters";
-
 import "./App.css";
-// import AddComponent from "./components/AddComponent";
-
+const lodash = require("lodash");
 class App extends Component {
   state = {
     counters: [
@@ -15,6 +13,16 @@ class App extends Component {
     ]
   };
 
+  constructor(props) {
+    super(props);
+    this.initialCounters = lodash.cloneDeep(this.state.counters);
+  }
+
+  handleDefault = () => {
+    const counters = this.initialCounters;
+    this.setState({ counters });
+  };
+
   handleIncrement = counter => {
     const counters = [...this.state.counters];
     const index = counters.indexOf(counter);
@@ -23,13 +31,13 @@ class App extends Component {
     this.setState({ counters });
   };
   handleAddition = counter => {
-    console.log("Adding new components");
+    // console.log("Adding new components");
     const counters = [...this.state.counters];
     console.log(counters);
-    console.log("The old length is: ", counters.length);
+    // console.log("The old length is: ", counters.length);
     const index = counters.length;
     counters[index] = { ...counter };
-    console.log("The new length is: ", counters.length);
+    // console.log("The new length is: ", counters.length);
     counters[index].value = 0;
     counters[index].id = counters.length;
     console.log("The ID is", counters[index].id);
@@ -63,6 +71,7 @@ class App extends Component {
 
         <Counters
           counters={this.state.counters}
+          onDefault={this.handleDefault}
           onReset={this.handleReset}
           onIncrement={this.handleIncrement}
           onDelete={this.handleDelete}
