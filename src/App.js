@@ -3,13 +3,14 @@ import NavBar from "./components/NavBar";
 import Counters from "./components/counters";
 import "./App.css";
 const lodash = require("lodash");
+let uniqid = require("uniqid");
 class App extends Component {
   state = {
     counters: [
-      { id: 1, value: 0 },
-      { id: 2, value: 0 },
-      { id: 3, value: 0 },
-      { id: 4, value: 0 }
+      { id: uniqid(), value: 0 },
+      { id: uniqid(), value: 0 },
+      { id: uniqid(), value: 0 },
+      { id: uniqid(), value: 0 }
     ]
   };
 
@@ -39,8 +40,8 @@ class App extends Component {
     counters[index] = { ...counter };
     // console.log("The new length is: ", counters.length);
     counters[index].value = 0;
-    counters[index].id = counters.length;
-    console.log("The ID is", counters[index].id);
+    counters[index].id = uniqid();
+    // console.log("The ID is", counters[index].id);
     this.setState({ counters });
   };
 
