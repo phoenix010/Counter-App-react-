@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import NavBar from "./components/NavBar";
 import Counters from "./components/counters";
 import "./App.css";
+import ErrorBoundary from "./components/ErrorBoundary";
 const lodash = require("lodash");
 let uniqid = require("uniqid");
 class App extends Component {
@@ -60,24 +61,35 @@ class App extends Component {
   };
 
   render() {
+    if (this.state.counters.length === 0) {
+      return (
+        <p>
+          All Items have been deleted.Please Refresh the page to get back to
+          defaut state.
+        </p>
+      );
+    }
     return (
       <React.Fragment>
-        <NavBar
-          totalValues={this.state.counters
-            .map(c => c.value)
-            .reduce(function(acc, curr) {
-              return acc + curr;
-            })}
-        />
-
-        <Counters
-          counters={this.state.counters}
-          onDefault={this.handleDefault}
-          onReset={this.handleReset}
-          onIncrement={this.handleIncrement}
-          onDelete={this.handleDelete}
-          onAdd={this.handleAddition}
-        />
+        <ErrorBoundary>
+          <NavBar
+            totalValues={this.state.counters
+              .map(c => c.value)
+              .reduce(function(acc, curr) {
+                return acc + curr;
+              })}
+          />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <Counters
+            counters={this.state.counters}
+            onDefault={this.handleDefault}
+            onReset={this.handleReset}
+            onIncrement={this.handleIncrement}
+            onDelete={this.handleDelete}
+            onAdd={this.handleAddition}
+          />
+        </ErrorBoundary>
       </React.Fragment>
     );
   }

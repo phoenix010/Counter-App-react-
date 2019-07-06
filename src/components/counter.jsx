@@ -2,6 +2,7 @@ import React, { Component } from "react";
 class Counter extends Component {
   render() {
     // console.log("props", this.props);
+    // if(this.props.)
     return (
       <React.Fragment>
         <h4>{this.props.id}</h4>
