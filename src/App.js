@@ -61,41 +61,38 @@ class App extends Component {
   };
 
   render() {
-    if (this.state.counters.length === 0) {
-      return (
-        <React.Fragment>
-          <h1>All Items have been deleted.</h1>
-          <p>Click on default to get back to default state</p>
-          <button
-            onClick={this.handleDefault}
-            className="btn btn-primary btn-sm m-2"
-          >
-            Default
-          </button>
-        </React.Fragment>
-      );
-    }
+    // if (this.state.counters.length === 0) {
+    //   return (
+    //     <React.Fragment>
+    //       <h1>All Items have been deleted.</h1>
+    //       <p>Click on default to get back to default state</p>
+    //       <button
+    //         onClick={this.handleDefault}
+    //         className="btn btn-primary btn-sm m-2"
+    //       >
+    //         Default
+    //       </button>
+    //     </React.Fragment>
+    //   );
+    // }
     return (
       <React.Fragment>
-        <ErrorBoundary>
-          <NavBar
-            totalValues={this.state.counters
-              .map(c => c.value)
-              .reduce(function(acc, curr) {
-                return acc + curr;
-              })}
-          />
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <Counters
-            counters={this.state.counters}
-            onDefault={this.handleDefault}
-            onReset={this.handleReset}
-            onIncrement={this.handleIncrement}
-            onDelete={this.handleDelete}
-            onAdd={this.handleAddition}
-          />
-        </ErrorBoundary>
+        <NavBar
+          totalValues={this.state.counters
+            .map(c => c.value)
+            .reduce(function(acc, curr) {
+              return acc + curr;
+            })}
+        />
+
+        <Counters
+          counters={this.state.counters}
+          onDefault={this.handleDefault}
+          onReset={this.handleReset}
+          onIncrement={this.handleIncrement}
+          onDelete={this.handleDelete}
+          onAdd={this.handleAddition}
+        />
       </React.Fragment>
     );
   }
