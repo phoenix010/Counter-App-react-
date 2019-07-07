@@ -63,10 +63,16 @@ class App extends Component {
   render() {
     if (this.state.counters.length === 0) {
       return (
-        <p>
-          All Items have been deleted.Please Refresh the page to get back to
-          defaut state.
-        </p>
+        <React.Fragment>
+          <h1>All Items have been deleted.</h1>
+          <p>Click on default to get back to default state</p>
+          <button
+            onClick={this.handleDefault}
+            className="btn btn-primary btn-sm m-2"
+          >
+            Default
+          </button>
+        </React.Fragment>
       );
     }
     return (

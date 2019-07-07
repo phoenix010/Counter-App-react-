@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 class Counter extends Component {
   render() {
-    // console.log("props", this.props);
-    // if(this.props.)
     return (
       <React.Fragment>
         <h4>{this.props.id}</h4>
@@ -23,9 +21,6 @@ class Counter extends Component {
     );
   }
 
-  //   handleIncrement = () => {
-  //     this.setState({ value: this.state.value + 1 });
-  //   };
   getBadgeClasses() {
     let classes = "badge m-2 badge-";
     classes += this.props.counter.value === 0 ? "warning" : "primary";
